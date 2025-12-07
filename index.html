@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Torneo de Pádel - Información, inscripciones, cuadros y resultados" />
-  <title>Torneo de Pádel | Club [NOMBRE DEL CLUB]</title>
+  <meta name="description" content="Torneo de Inauguración Helikepadel - Información, inscripciones, cuadros y resultados" />
+  <title>Torneo de Inauguración | Helikepadel</title>
   <link rel="icon" type="image/png" href="images/padel-icon.png" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <!-- Bootstrap & FontAwesome (CSS) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,40 +16,68 @@
 
   <style>
     :root{
-      --sidebar-width: 210px;
+      --sidebar-width: 220px;
       --sidebar-border: 1px;
+      --blue-court: #0054a6;
+      --pink: #ff3cab;
+      --lime: #e7ff4f;
+      --dark: #222;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top, #f5f7ff, #e4e9f2);
       margin: 0;
       font-size: 15px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(0,0,0,.35), rgba(0,0,0,.45)),
+        radial-gradient(circle at top, #0072ff 0, #001634 55%);
+      background-attachment: fixed;
     }
 
     section[id] { scroll-margin-top: 90px; }
 
-    .btn-main {
-      background: linear-gradient(45deg, #1abc9c, #16a085);
-      color: white;
-      border: none;
-    }
-    .btn-main:hover {
-      background: linear-gradient(45deg, #149174, #0f7e63);
-      color: white;
+    h1, h2 {
+      font-family: 'Bebas Neue', system-ui, sans-serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
-    .section h2,
-    .section h1 {
-      background: linear-gradient(45deg, #1abc9c, #16a085);
+    .section h2 {
+      font-size: 2.3rem;
+      background: linear-gradient(90deg, var(--lime), var(--pink));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       color: transparent;
-      font-weight: 800;
       margin-bottom: 20px;
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, var(--pink), #ff7ad7);
+      color: #111;
+      border: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .btn-main:hover {
+      background: linear-gradient(135deg, #ffafe3, var(--pink));
+      color: #000;
+    }
+
+    .btn-outline-secondary {
+      border-color: var(--lime);
+      color: var(--lime);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-weight: 600;
+    }
+    .btn-outline-secondary:hover {
+      background: var(--lime);
+      color: #000;
     }
 
     /* Sidebar escritorio */
@@ -58,22 +86,26 @@
       top: 0; left: 0;
       width: var(--sidebar-width);
       height: 100vh;
-      background-color: #fff;
-      border-right: 1px solid #ddd;
+      background: rgba(1, 10, 32, 0.96);
+      border-right: 1px solid rgba(255,255,255,.08);
       z-index: 998;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding: 30px 12px;
+      padding: 28px 14px;
     }
 
     .sidebar h3 {
-      font-size: 1rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+      font-family: 'Bebas Neue', system-ui, sans-serif;
       text-transform: uppercase;
-      letter-spacing: .07em;
+      letter-spacing: .12em;
+      color: var(--lime);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
     }
 
     .sidebar ul {
@@ -82,7 +114,7 @@
       padding-left: 0;
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 2px;
       width: 100%;
     }
 
@@ -90,7 +122,7 @@
       display: block;
       width: 100%;
       text-decoration: none;
-      color: #333;
+      color: #f1f1f1;
       font-weight: 500;
       padding: 8px 10px;
       border-radius: 10px;
@@ -98,15 +130,15 @@
       font-size: 0.93rem;
     }
     .sidebar ul li a:hover {
-      color: #16a085;
-      background: rgba(22,160,133,.08);
-      transform: translateX(2px);
+      color: var(--lime);
+      background: rgba(255,255,255,.06);
+      transform: translateX(3px);
     }
     .sidebar ul li a.active {
-      color: #16a085;
-      background: #f5f7fa;
+      color: #000;
+      background: linear-gradient(90deg, var(--lime), var(--pink));
       font-weight: 700;
-      box-shadow: inset 0 0 0 1px rgba(22,160,133,.12);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.18);
     }
 
     .content-wrapper {
@@ -123,39 +155,123 @@
     }
 
     .hero-card {
-      background: #ffffffee;
-      border-radius: 18px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.10);
-      padding: 28px 26px;
+      background: linear-gradient(135deg, rgba(0,0,0,.8), rgba(0,0,0,.9));
+      border-radius: 24px;
+      border: 2px solid rgba(255,255,255,.18);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.7);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--lime), var(--pink)) border-box;
+      mask:
+        linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask:
+        linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: .7;
+      pointer-events: none;
     }
 
     .badge-date {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       border-radius: 999px;
-      padding: 6px 14px;
-      background: #e8fcf7;
-      color: #16a085;
-      font-weight: 600;
+      padding: 6px 16px;
+      background: var(--pink);
+      color: #000;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .08em;
+      letter-spacing: .12em;
+      display: inline-block;
+    }
+
+    .badge-price {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--lime);
+      color: #000;
+      font-weight: 800;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      box-shadow: 0 0 0 3px rgba(0,0,0,.45);
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      line-height: 1.05;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: var(--lime);
+      text-shadow: 0 0 10px rgba(0,0,0,.7);
+    }
+    .hero-title span {
+      display: block;
+    }
+    .hero-title span:nth-child(2) {
+      color: var(--pink);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: #f7f7f7;
+    }
+
+    .hero-list li {
+      margin-bottom: 4px;
+    }
+
+    .poster-frame {
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,.7);
+      border: 3px solid rgba(255,255,255,.35);
     }
 
     .info-card {
-      background-color: #fff;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+      background: rgba(0,0,0,.8);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
       padding: 20px 22px;
       height: 100%;
     }
 
     .info-card h3 {
-      font-size: 1.05rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--lime);
+      text-transform: uppercase;
+      letter-spacing: .08em;
       margin-bottom: 0.75rem;
+      font-family: 'Bebas Neue', system-ui, sans-serif;
     }
 
+    .table-cats {
+      color: #fff;
+    }
+    .table-cats thead {
+      background: rgba(0,0,0,.75);
+    }
     .table-cats th, .table-cats td {
       font-size: 0.9rem;
       vertical-align: middle;
+      border-color: rgba(255,255,255,.06) !important;
+    }
+    .table-striped>tbody>tr:nth-of-type(odd)>* {
+      --bs-table-accent-bg: rgba(0,0,0,.4);
     }
 
     .gallery-img {
@@ -163,17 +279,31 @@
       width: 100%;
       height: 180px;
       object-fit: cover;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+      border: 2px solid rgba(255,255,255,.25);
+    }
+
+    .tag-strip {
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-size: 0.8rem;
+      background: linear-gradient(90deg, var(--lime), var(--pink));
+      color: #000;
+      padding: 6px 10px;
+      display: inline-block;
+      font-weight: 700;
+      border-radius: 999px;
     }
 
     .site-footer {
-      background-color: #16a085;
+      background: #000814;
       color: #fff;
       padding: 1.1rem 0;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      border-top: 1px solid rgba(255,255,255,.15);
     }
     .site-footer__inner {
       max-width: 900px;
@@ -188,11 +318,12 @@
       position: fixed;
       top: 10px; left: 20px;
       z-index: 9999;
-      background-color: white;
-      border: 1px solid #ccc;
+      background-color: rgba(0,0,0,.85);
+      border: 1px solid rgba(255,255,255,.35);
       padding: 6px 10px;
       border-radius: 6px;
       line-height: 1;
+      color: #fff;
     }
     .mobile-toggler i { font-size: 20px; }
 
@@ -201,6 +332,8 @@
       .content-wrapper { margin-left: 0; padding: 80px 16px 30px; }
       .section { padding: 60px 0; }
       .gallery-img { height: 160px; }
+      .hero-title { font-size: 2.4rem; }
+      .badge-price { position: static; margin-top: 10px; display: inline-block; }
     }
     @media (min-width: 769px) {
       .site-footer {
@@ -214,7 +347,7 @@
 
   <!-- Sidebar escritorio -->
   <nav class="sidebar d-none d-md-flex" aria-label="Navegación lateral torneo">
-    <h3><i class="fa-solid fa-table-tennis-paddle-ball me-2"></i>Torneo Pádel</h3>
+    <h3><i class="fa-solid fa-table-tennis-paddle-ball"></i>Helikepadel</h3>
     <ul>
       <li><a href="#inicio" class="active">🏠 Inicio</a></li>
       <li><a href="#info">ℹ️ Información</a></li>
@@ -240,10 +373,10 @@
   </button>
 
   <!-- Menú offcanvas móvil -->
-  <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+  <div class="offcanvas offcanvas-start d-md-none text-bg-dark" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="mobileMenuLabel">Menú Torneo</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      <h5 class="offcanvas-title" id="mobileMenuLabel">Torneo Helikepadel</h5>
+      <button type="button" class="btn-close btn-close-white text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
     </div>
     <div class="offcanvas-body">
       <ul class="list-unstyled mb-0">
@@ -269,29 +402,43 @@
           <div class="col-lg-7">
             <div class="hero-card">
               <span class="badge-date">
-                14–16 JUNIO 2025 · [CIUDAD]
+                Del 15 al 18 de enero · Torrellano (Alicante)
               </span>
-              <h1 class="mt-3">Torneo de Pádel <br>[NOMBRE DEL TORNEO]</h1>
-              <p class="lead mt-3">
-                Torneo oficial organizado por <strong>[CLUB / ORGANIZADOR]</strong> con categorías para todos los niveles,
-                premios para campeones y finalistas, y el mejor ambiente de pádel.
+              <div class="badge-price">
+                25€ / persona
+              </div>
+              <h1 class="hero-title mt-3">
+                <span>Torneo de</span>
+                <span>Inauguración</span>
+              </h1>
+              <p class="hero-sub mt-2 mb-3">
+                Torneo de inauguración de <strong>Helikepadel</strong> con categorías para todos los niveles,
+                premios en metálico y el mejor ambiente de pádel.
               </p>
-              <ul class="mt-3 mb-4">
-                <li>📍 Sede: <strong>Club [Nombre del Club]</strong></li>
+              <ul class="hero-list mt-2 mb-4">
+                <li>📍 Calle ________, Torrellano, Alicante</li>
                 <li>🎯 Mínimo 2 partidos garantizados por pareja</li>
-                <li>🎁 Bienvenida + regalos para ganadores</li>
+                <li>🎁 Obsequio Helike para inscripciones hasta el <strong>10/01</strong> · Plazas limitadas</li>
+                <li>💥 Kit bienvenida · Fisio · Cerveza · Fotógrafo</li>
               </ul>
-              <a href="#inscripciones" class="btn btn-main btn-lg me-2">
-                <i class="fa-solid fa-pen-to-square me-1"></i> Inscríbete
-              </a>
-              <a href="#categorias" class="btn btn-outline-secondary btn-lg">
-                Ver categorías
-              </a>
+              <div class="d-flex flex-wrap gap-2">
+                <a href="#inscripciones" class="btn btn-main btn-lg">
+                  <i class="fa-solid fa-pen-to-square me-1"></i> Inscríbete ahora
+                </a>
+                <a href="#categorias" class="btn btn-outline-secondary btn-lg">
+                  Ver categorías
+                </a>
+              </div>
             </div>
           </div>
           <div class="col-lg-5">
-            <!-- Aquí puedes poner una imagen de pista de pádel -->
-            <img src="images/padel-hero.jpg" alt="Pista de pádel" class="img-fluid rounded-4 shadow">
+            <!-- Cartel del torneo, ajusta la ruta si usas otro nombre -->
+            <div class="poster-frame">
+              <img src="images/cartel-helikepadel.jpg" alt="Cartel Torneo Inauguración Helikepadel" class="img-fluid">
+            </div>
+            <p class="mt-2 text-center">
+              <span class="tag-strip">@helikepadel</span>
+            </p>
           </div>
         </div>
       </div>
@@ -300,33 +447,34 @@
     <!-- Información general -->
     <section class="section" id="info">
       <div class="container">
-        <h2 class="mb-4">Información del torneo</h2>
+        <h2>Información del torneo</h2>
         <div class="row g-4">
           <div class="col-md-4">
             <div class="info-card">
               <h3><i class="fa-solid fa-location-dot me-2"></i>Sede</h3>
-              <p class="mb-1"><strong>Club:</strong> [Nombre del club]</p>
-              <p class="mb-1"><strong>Dirección:</strong> [Dirección completa]</p>
-              <p class="mb-0"><strong>Superficie:</strong> Césped artificial / Cristal</p>
+              <p class="mb-1"><strong>Club:</strong> Helikepadel</p>
+              <p class="mb-1"><strong>Dirección:</strong> Calle ________, Torrellano, Alicante</p>
+              <p class="mb-0"><strong>Superficie:</strong> Césped artificial · Pistas de cristal</p>
             </div>
           </div>
           <div class="col-md-4">
             <div class="info-card">
-              <h3><i class="fa-solid fa-circle-info me-2"></i>Formato</h3>
+              <h3><i class="fa-solid fa-circle-info me-2"></i>Formato de juego</h3>
               <ul class="mb-0">
-                <li>Partidos a <strong>3 sets</strong> (super tie-break 3º set).</li>
-                <li>Fase de grupos + cuadro final (según inscritos).</li>
-                <li>Mínimo <strong>2 partidos garantizados</strong>.</li>
+                <li>Fase de grupos.</li>
+                <li>Partidos a <strong>2 sets + super tie-break</strong>.</li>
+                <li>Finales a <strong>partido completo</strong>.</li>
+                <li>Mínimo <strong>2 partidos</strong> por pareja.</li>
               </ul>
             </div>
           </div>
           <div class="col-md-4">
             <div class="info-card">
-              <h3><i class="fa-solid fa-trophy me-2"></i>Premios</h3>
+              <h3><i class="fa-solid fa-gift me-2"></i>Extras</h3>
               <ul class="mb-0">
-                <li>Trofeo + material deportivo para campeones.</li>
-                <li>Trofeo + detalle para finalistas.</li>
-                <li>Sorteo de regalos entre todos los participantes.</li>
+                <li>Obsequio Helike para inscripciones hasta el <strong>10/01</strong>.</li>
+                <li>Kit de bienvenida.</li>
+                <li>Fisio, cerveza y fotógrafo durante el torneo.</li>
               </ul>
             </div>
           </div>
@@ -335,56 +483,65 @@
     </section>
 
     <!-- Categorías -->
-    <section class="section bg-light" id="categorias">
+    <section class="section" id="categorias">
       <div class="container">
-        <h2 class="mb-4">Categorías y niveles</h2>
-        <p class="mb-3">Selecciona la categoría que mejor se adapte a tu nivel. Si tienes dudas, consúltanos antes de inscribirte.</p>
+        <h2>Categorías y premios</h2>
+        <p class="mb-3">
+          Elige la categoría que mejor se adapte a tu nivel. Premios en metálico para campeones y finalistas.
+        </p>
         <div class="table-responsive">
           <table class="table table-striped table-cats align-middle">
             <thead>
               <tr>
                 <th>Categoría</th>
-                <th>Género</th>
-                <th>Nivel orientativo</th>
-                <th>Observaciones</th>
+                <th>Tipo</th>
+                <th>Premio campeones</th>
+                <th>Premio finalistas</th>
+                <th>Notas</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1ª</td>
-                <td>Masculina</td>
-                <td>Avanzado / Competición</td>
-                <td>Jugadores federados o con alto nivel.</td>
+                <td>1ª Masculina / Femenina</td>
+                <td>Masculina / Femenina</td>
+                <td>Partido de exhibición</td>
+                <td>—</td>
+                <td>Categoria top del torneo.</td>
               </tr>
               <tr>
-                <td>2ª</td>
-                <td>Masculina</td>
-                <td>Intermedio–Avanzado</td>
-                <td>Jugadores habituales con experiencia en torneos.</td>
+                <td>2ª Masculina / Femenina</td>
+                <td>Masculina / Femenina</td>
+                <td>300 €</td>
+                <td>150 €</td>
+                <td>Nivel avanzado.</td>
               </tr>
               <tr>
-                <td>3ª</td>
-                <td>Masculina</td>
-                <td>Intermedio</td>
-                <td>Juego habitual, pero pocos torneos disputados.</td>
+                <td>3ª Masculina / Femenina</td>
+                <td>Masculina / Femenina</td>
+                <td>300 €</td>
+                <td>150 €</td>
+                <td>Nivel intermedio.</td>
               </tr>
               <tr>
-                <td>Femenina A</td>
-                <td>Femenina</td>
-                <td>Intermedio–Avanzado</td>
-                <td>Jugadoras con buen ritmo y experiencia.</td>
+                <td>4ª Masculina / Femenina</td>
+                <td>Masculina / Femenina</td>
+                <td>300 €</td>
+                <td>150 €</td>
+                <td>Competitivo pero accesible.</td>
               </tr>
               <tr>
-                <td>Femenina B</td>
-                <td>Femenina</td>
-                <td>Iniciación–Intermedio</td>
-                <td>Jugadoras que empiezan o juegan ocasionalmente.</td>
+                <td>5ª Masculina / Femenina</td>
+                <td>Masculina / Femenina</td>
+                <td>300 €</td>
+                <td>150 €</td>
+                <td>Jugadores que empiezan en torneos.</td>
               </tr>
               <tr>
+                <td>Iniciación Mixta</td>
                 <td>Mixta</td>
-                <td>Mixta</td>
-                <td>Todos los niveles</td>
-                <td>Se intentará agrupar por nivel similar.</td>
+                <td>300 €</td>
+                <td>150 €</td>
+                <td>Parejas mixtas nivel iniciación.</td>
               </tr>
             </tbody>
           </table>
@@ -395,27 +552,26 @@
     <!-- Inscripciones -->
     <section class="section" id="inscripciones">
       <div class="container">
-        <h2 class="mb-4">Inscripciones</h2>
+        <h2>Inscripciones</h2>
         <div class="row g-4">
           <div class="col-md-6">
             <div class="info-card">
               <h3><i class="fa-solid fa-euro-sign me-2"></i>Precio</h3>
               <ul class="mb-0">
-                <li><strong>1 categoría:</strong> 20€ por jugador (40€ pareja)</li>
-                <li><strong>2 categorías:</strong> 30€ por jugador</li>
-                <li>Incluye: welcome pack + agua en pista.</li>
+                <li><strong>25€ / persona</strong> (50€ por pareja) · 1 categoría.</li>
+                <li>Incluye: kit bienvenida, mínimo 2 partidos y obsequio Helike (hasta 10/01).</li>
               </ul>
               <hr>
-              <p class="mb-0"><strong>Fecha límite de inscripción:</strong> [DD/MM/AAAA]</p>
+              <p class="mb-0"><strong>Fecha límite de inscripción:</strong> 10 de enero o hasta completar plazas.</p>
             </div>
           </div>
           <div class="col-md-6">
             <div class="info-card">
               <h3><i class="fa-solid fa-clipboard-list me-2"></i>Cómo inscribirse</h3>
               <ol class="mb-3">
-                <li>Rellena el formulario con los datos de la pareja y categoría.</li>
-                <li>Realiza el pago mediante Bizum / transferencia.</li>
-                <li>Envía justificante si es necesario a [email/WhatsApp].</li>
+                <li>Rellena el formulario de inscripción con los datos de la pareja y categoría.</li>
+                <li>Realiza el pago por Bizum / transferencia según indicaciones del formulario.</li>
+                <li>Adjunta el justificante de pago si es necesario.</li>
               </ol>
               <a
                 href="https://forms.gle/TU_FORMULARIO_AQUI"
@@ -434,14 +590,13 @@
     </section>
 
     <!-- Cuadros y horarios -->
-    <section class="section bg-light" id="cuadros">
+    <section class="section" id="cuadros">
       <div class="container">
-        <h2 class="mb-4">Cuadros y horarios</h2>
+        <h2>Cuadros y horarios</h2>
         <p class="mb-3">
           Publicaremos aquí los cuadros y horarios una vez cerradas las inscripciones.
         </p>
 
-        <!-- Ejemplo: enlaces a PDFs o imágenes -->
         <ul>
           <li><a href="docs/cuadro-1-masculina.pdf" target="_blank">Cuadro 1ª Masculina (PDF)</a></li>
           <li><a href="docs/cuadro-2-masculina.pdf" target="_blank">Cuadro 2ª Masculina (PDF)</a></li>
@@ -457,7 +612,7 @@
     <!-- Resultados -->
     <section class="section" id="resultados">
       <div class="container">
-        <h2 class="mb-4">Resultados</h2>
+        <h2>Resultados</h2>
         <p class="mb-3">Una vez comience el torneo, iremos actualizando los resultados y campeones de cada categoría.</p>
 
         <div class="row g-4">
@@ -466,9 +621,9 @@
               <h3>Campeones y finalistas</h3>
               <ul class="mb-0">
                 <li><strong>1ª Masculina:</strong> [Pareja campeona] / [Pareja finalista]</li>
-                <li><strong>2ª Masculina:</strong> ...</li>
-                <li><strong>Femenina A:</strong> ...</li>
-                <li><strong>Mixta:</strong> ...</li>
+                <li><strong>2ª Masculina:</strong> …</li>
+                <li><strong>Femenina A:</strong> …</li>
+                <li><strong>Iniciación Mixta:</strong> …</li>
               </ul>
             </div>
           </div>
@@ -488,10 +643,10 @@
     </section>
 
     <!-- Galería -->
-    <section class="section bg-light" id="galeria">
+    <section class="section" id="galeria">
       <div class="container">
-        <h2 class="mb-4">Galería</h2>
-        <p class="mb-3">Algunas imágenes del club, ediciones anteriores o del propio torneo.</p>
+        <h2>Galería</h2>
+        <p class="mb-3">Imágenes del club, del torneo y de los patrocinadores.</p>
 
         <div class="row g-3">
           <div class="col-6 col-md-4">
@@ -514,24 +669,28 @@
     <!-- Contacto -->
     <section class="section" id="contacto">
       <div class="container text-center">
-        <h2 class="mb-3">Contacto</h2>
+        <h2>Contacto</h2>
         <p class="mb-3">
-          Para cualquier duda sobre categorías, horarios o inscripciones, puedes escribirnos o llamarnos.
+          Para dudas sobre categorías, horarios o inscripciones:
         </p>
 
         <p class="mb-2">
           <i class="fa-solid fa-envelope me-1"></i>
-          <a href="mailto:torneo@tuclub.com">torneo@tuclub.com</a>
+          <a href="mailto:helikepadel@gmail.com">helikepadel@gmail.com</a>
         </p>
         <p class="mb-2">
           <i class="fa-brands fa-whatsapp me-1"></i>
-          <a href="https://wa.me/34123456789" target="_blank" rel="noopener noreferrer">
-            +34 123 456 789
+          <a href="https://wa.me/34XXXXXXXXX" target="_blank" rel="noopener noreferrer">
+            +34 XXX XXX XXX
           </a>
+        </p>
+        <p class="mb-2">
+          <i class="fa-brands fa-instagram me-1"></i>
+          <a href="https://instagram.com/helikepadel" target="_blank" rel="noopener noreferrer">@helikepadel</a>
         </p>
         <p class="mb-0">
           <i class="fa-solid fa-location-dot me-1"></i>
-          [Dirección del club, ciudad]
+          Calle ________, Torrellano, Alicante
         </p>
       </div>
     </section>
@@ -542,7 +701,7 @@
   <footer class="site-footer">
     <div class="site-footer__inner">
       <p class="mb-0">
-        &copy; 2025 Torneo de Pádel [NOMBRE DEL TORNEO] · Club [NOMBRE DEL CLUB]
+        &copy; 2025 Torneo de Inauguración Helikepadel · Torrellano, Alicante
       </p>
     </div>
   </footer>
