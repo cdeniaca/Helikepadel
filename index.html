@@ -208,19 +208,8 @@
       color: var(--lime);
     }
 
-    .table-cats {
-      color: #f6f7fb;
-      font-size: .9rem;
-    }
-    .table-cats thead {
-      background: rgba(5,9,20,.9);
-    }
-    .table-cats th, .table-cats td {
-      border-color: rgba(255,255,255,.08) !important;
-      vertical-align: middle;
-    }
-    .table-striped>tbody>tr:nth-of-type(odd)>* {
-      --bs-table-accent-bg: rgba(10,18,45,.8);
+    .section-muted {
+      background: radial-gradient(circle at top, #11172b, #050914);
     }
 
     .qr-box {
@@ -234,10 +223,6 @@
       border: 1px solid rgba(255,255,255,.2);
       padding: 8px;
       background: #fff;
-    }
-
-    .section-muted {
-      background: radial-gradient(circle at top, #11172b, #050914);
     }
 
     .badge-small {
@@ -262,6 +247,97 @@
 
     a { color: var(--lime); }
     a:hover { color: #fff; }
+
+    /* ==== Estilo tabla categorías elegante ==== */
+    .table-cats-wrapper {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+      background: #ffffff;
+    }
+
+    .table-cats {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      color: #222;
+    }
+
+    .table-cats thead th {
+      background: #050914;
+      color: #f8f9ff;
+      border-bottom: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .table-cats tbody td {
+      vertical-align: middle;
+      border-color: #e5e7f0 !important;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .table-cats tbody tr:nth-of-type(odd) {
+      background-color: #f7f8fc;
+    }
+
+    .table-cats tbody tr:hover {
+      background-color: #eef2ff;
+    }
+
+    .cat-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .cat-tag {
+      display: inline-block;
+      margin-top: 2px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #050914;
+      color: #f8f9ff;
+      font-size: 0.7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .badge-type {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .badge-type.masc {
+      background: rgba(0, 87, 184, .12);
+      color: #0057b8;
+    }
+
+    .badge-type.fem {
+      background: rgba(255, 60, 171, .12);
+      color: #ff3cab;
+    }
+
+    .badge-type.mix {
+      background: rgba(231, 255, 79, .18);
+      color: #6a7b0a;
+    }
+
+    @media (max-width: 575.98px) {
+      .table-cats {
+        font-size: 0.82rem;
+      }
+      .table-cats thead {
+        font-size: 0.7rem;
+      }
+    }
 
     @media (max-width: 767.98px) {
       .hero {
@@ -306,7 +382,7 @@
           <div class="hero-card">
             <span class="hero-tag">Del 15 al 18 de enero · Torrellano (Alicante)</span>
             <h1 class="hero-title">Torneo de inauguración</h1>
-            <h2 class="hero-subtitle">HELİKEPADEL</h2>
+            <h2 class="hero-subtitle">HELIKEPADEL</h2>
 
             <p class="hero-price">
               <strong>25€ / persona</strong> · Plazas limitadas · Obsequio Helike para inscripciones hasta el <strong>10/01</strong>
@@ -331,7 +407,6 @@
         </div>
         <div class="col-lg-5">
           <div class="hero-poster text-center">
-            <!-- Cartel grande (opcional) -->
             <img src="images/cartel-helikepadel.jpg" alt="Cartel Torneo de Inauguración Helikepadel" class="img-fluid rounded-3 mb-3">
             <div class="qr-box">
               <p class="mb-2">Escanea para ir directo a la inscripción:</p>
@@ -394,8 +469,8 @@
         <p class="section-subtitle">masculino · femenino · mixto</p>
       </div>
 
-      <div class="table-responsive">
-        <table class="table table-striped table-cats align-middle">
+      <div class="table-cats-wrapper">
+        <table class="table table-cats align-middle">
           <thead>
             <tr>
               <th>Categoría</th>
@@ -407,43 +482,83 @@
           </thead>
           <tbody>
             <tr>
-              <td>1ª Masculina / Femenina</td>
-              <td>Masculina / Femenina</td>
+              <td>
+                <div class="cat-name">1ª</div>
+                <div class="cat-tag">Masculina / Femenina</div>
+              </td>
+              <td>
+                <span class="badge-type masc">Masculina</span>
+                <span class="badge-type fem ms-1">Femenina</span>
+              </td>
               <td>Partido de exhibición</td>
               <td>—</td>
               <td>Categoría top del torneo.</td>
             </tr>
+
             <tr>
-              <td>2ª Masculina / Femenina</td>
-              <td>Masculina / Femenina</td>
+              <td>
+                <div class="cat-name">2ª</div>
+                <div class="cat-tag">Masculina / Femenina</div>
+              </td>
+              <td>
+                <span class="badge-type masc">Masculina</span>
+                <span class="badge-type fem ms-1">Femenina</span>
+              </td>
               <td>300 €</td>
               <td>150 €</td>
               <td>Nivel avanzado.</td>
             </tr>
+
             <tr>
-              <td>3ª Masculina / Femenina</td>
-              <td>Masculina / Femenina</td>
+              <td>
+                <div class="cat-name">3ª</div>
+                <div class="cat-tag">Masculina / Femenina</div>
+              </td>
+              <td>
+                <span class="badge-type masc">Masculina</span>
+                <span class="badge-type fem ms-1">Femenina</span>
+              </td>
               <td>300 €</td>
               <td>150 €</td>
               <td>Nivel intermedio.</td>
             </tr>
+
             <tr>
-              <td>4ª Masculina / Femenina</td>
-              <td>Masculina / Femenina</td>
+              <td>
+                <div class="cat-name">4ª</div>
+                <div class="cat-tag">Masculina / Femenina</div>
+              </td>
+              <td>
+                <span class="badge-type masc">Masculina</span>
+                <span class="badge-type fem ms-1">Femenina</span>
+              </td>
               <td>300 €</td>
               <td>150 €</td>
               <td>Competitivo pero accesible.</td>
             </tr>
+
             <tr>
-              <td>5ª Masculina / Femenina</td>
-              <td>Masculina / Femenina</td>
+              <td>
+                <div class="cat-name">5ª</div>
+                <div class="cat-tag">Masculina / Femenina</div>
+              </td>
+              <td>
+                <span class="badge-type masc">Masculina</span>
+                <span class="badge-type fem ms-1">Femenina</span>
+              </td>
               <td>300 €</td>
               <td>150 €</td>
-              <td>Jugadores que empiezan en torneos.</td>
+              <td>Jugadores que empiezan torneos.</td>
             </tr>
+
             <tr>
-              <td>Iniciación Mixta</td>
-              <td>Mixta</td>
+              <td>
+                <div class="cat-name">Iniciación</div>
+                <div class="cat-tag">Mixta</div>
+              </td>
+              <td>
+                <span class="badge-type mix">Mixta</span>
+              </td>
               <td>300 €</td>
               <td>150 €</td>
               <td>Parejas mixtas nivel iniciación.</td>
